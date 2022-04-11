@@ -18,7 +18,7 @@ services:
       JOBRUNR_DELETE_SUCCEEDEDJOBS_AFTER: "36"
       JOBRUNR_PERMANENTLY_DELETE_DELETED_JOBS_AFTER: "72"
       JOBRUNR_DASHBOARD_PORT: "9001"
-      SPRING_DATA_MONGODB_URI: "mongodb://mongodb:27017/payment_queue_service?retryWrites=true&w=majority&authSource=admin"
+      SPRING_DATA_MONGODB_URI: "mongodb://mongodb:27017/demo?retryWrites=true&w=majority&authSource=admin"
 
     ports:
       - "9001:9001"
@@ -41,7 +41,7 @@ services:
       JOBRUNR_DELETE_SUCCEEDEDJOBS_AFTER: "36"
       JOBRUNR_PERMANENTLY_DELETE_DELETED_JOBS_AFTER: "72"
       JOBRUNR_DASHBOARD_PORT: "9001"
-      SPRING_DATA_MONGODB_URI: "mongodb://mongodb:27017/payment_queue_service?retryWrites=true&w=majority&authSource=admin"
+      SPRING_DATA_MONGODB_URI: "mongodb://mongodb:27017/demo?retryWrites=true&w=majority&authSource=admin"
     build:
       context: .
       dockerfile: "Dockerfile"
