@@ -1,0 +1,27 @@
+server:
+  port: 9000
+
+spring:
+  data:
+    mongodb:
+      database: user_db
+      port: 27017
+      host: localhost
+
+org:
+  jobrunr:
+    database:
+      skip_create: false
+      table_prefix: demo-
+      database-name: user_db
+    job-scheduler:
+      enabled: true
+    background-job-server:
+      enabled: true
+      worker_count: 8
+      poll_interval_in_seconds: 20
+      delete_succeeded_jobs_after: 15m
+      permanently_delete_deleted_jobs_after: 72
+    dashboard:
+      enabled: true
+      port: 9001
