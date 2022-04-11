@@ -4,24 +4,27 @@ server:
 spring:
   data:
     mongodb:
-      database: user_db
-      port: 27017
-      host: localhost
+      uri: mongodb://localhost/demo?retryWrites=true&w=majority&authSource=admin
+      auto-index-creation: false
+      authentication-database: admin
 
 org:
   jobrunr:
+    jobs:
+      retry_back_off_time_seed: ${JOBRUNR_RETRY_BACK_OFF_TIME_SEED}
+      default_number_of_retries: ${JOBRUNR_NUMBER_OF_RETRIES}
     database:
       skip_create: false
-      table_prefix: demo-
-      database-name: user_db
+      table_prefix: jobs-
+      database-name: ${JOBRUNR_DATABASE_NAME}
     job-scheduler:
       enabled: true
     background-job-server:
       enabled: true
-      worker_count: 8
+      worker_count: ${JOBRUNR_WORKER_COUNT}
       poll_interval_in_seconds: 20
-      delete_succeeded_jobs_after: 15m
-      permanently_delete_deleted_jobs_after: 72
+      delete_succeeded_jobs_after: ${JOBRUNR_DELETE_SUCCEEDEDJOBS_AFTER}
+      permanently_delete_deleted_jobs_after: ${JOBRUNR_PERMANENTLY_DELETE_DELETED_JOBS_AFTER}
     dashboard:
       enabled: true
-      port: 9001
+      port: ${JOBRUNR_DASHBOARD_PORT}

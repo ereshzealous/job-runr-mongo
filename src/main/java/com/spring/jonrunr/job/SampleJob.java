@@ -30,8 +30,8 @@ public class SampleJob {
         }
     }
 
-    @Recurring(id = "Test-retry-Recurring-Job", cron = "*/5 * * * *")
-    @Job(name = "Retry Recurring Job", retries = 3)
+    @Recurring(id = "Test-retry-Recurring-Job", cron = "*/1 * * * *")
+    @Job(name = "Retry Recurring Job")
     public void recurringRetryJob() {
         boolean flag = true;
         Integer value = ThreadLocalRandom.current().nextInt(0, 100);

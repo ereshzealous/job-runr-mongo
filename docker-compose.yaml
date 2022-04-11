@@ -11,15 +11,14 @@ services:
   springboot-jobrunr-dashboard:
     image: app.jar
     environment:
-      SPRING_DATA_MONGODB_DATABASE: user_db
-      SPRING_DATA_MONGODB_PORT: 27017
-      SPRING_DATA_MONGODB_HOST: mongodb
-      ORG_JOBRUNR_DATABASE_SKIP_CREATE: "false"
-      ORG_JOBRUNR_DATABASE_TABLE_PREFIX: "demo"
-      ORG_JOBRUNR_JOB-SCHEDULER_EBABLED: "true"
-      ORG_JOBRUNR_BACKGROUND_JOB_SERVER_ENABLED: "false"
-      ORG_JOBRUNR_DASHBOARD_ENABLED: "true"
-      ORG_JOBRUNR_BACKGROUND_JOB_SERVER_PERMANENTLY_DELETE_DELETEDJOBS_AFTER: "1"
+      JOBRUNR_NUMBER_OF_RETRIES: "5"
+      JOBRUNR_RETRY_BACK_OFF_TIME_SEED: "3"
+      JOBRUNR_DATABASE_NAME: "demo"
+      JOBRUNR_WORKER_COUNT: "8"
+      JOBRUNR_DELETE_SUCCEEDEDJOBS_AFTER: "36"
+      JOBRUNR_PERMANENTLY_DELETE_DELETED_JOBS_AFTER: "72"
+      JOBRUNR_DASHBOARD_PORT: "9001"
+      SPRING_DATA_MONGODB_URI: "mongodb://mongodb:27017/payment_queue_service?retryWrites=true&w=majority&authSource=admin"
 
     ports:
       - "9001:9001"
@@ -35,14 +34,14 @@ services:
   springboot-backend:
     image: app.jar
     environment:
-      SPRING_DATA_MONGODB_DATABASE: user_db
-      SPRING_DATA_MONGODB_PORT: 27017
-      SPRING_DATA_MONGODB_HOST: mongodb
-      ORG_JOBRUNR_DATABASE_SKIP_CREATE: "false"
-      ORG_JOBRUNR_DATABASE_TABLE_PREFIX: "demo"
-      ORG_JOBRUNR_JOB-SCHEDULER_EBABLED: "false"
-      ORG_JOBRUNR_BACKGROUND_JOB_SERVER_ENABLED: "true"
-      ORG_JOBRUNR_BACKGROUND_JOB_SERVER_PERMANENTLY_DELETE_DELETEDJOBS_AFTER: "1"
+      JOBRUNR_NUMBER_OF_RETRIES: "5"
+      JOBRUNR_RETRY_BACK_OFF_TIME_SEED: "3"
+      JOBRUNR_DATABASE_NAME: "demo"
+      JOBRUNR_WORKER_COUNT: "8"
+      JOBRUNR_DELETE_SUCCEEDEDJOBS_AFTER: "36"
+      JOBRUNR_PERMANENTLY_DELETE_DELETED_JOBS_AFTER: "72"
+      JOBRUNR_DASHBOARD_PORT: "9001"
+      SPRING_DATA_MONGODB_URI: "mongodb://mongodb:27017/payment_queue_service?retryWrites=true&w=majority&authSource=admin"
     build:
       context: .
       dockerfile: "Dockerfile"
